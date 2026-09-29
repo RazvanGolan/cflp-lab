@@ -74,6 +74,7 @@ CI (`.github/workflows/pages.yml`) builds the code with `-warnaserror`, checks t
   | 10 | `#c2410c` | orange |
   | 11 | `#4d7c0f` | olive |
   | 12 | `#334155` | slate |
+- The build script also draws each lab's tab icon (the lab number on its accent colour) and the site icon ("C#"), so a new lab needs no icon work.
 - Slides and the landing page follow the viewer's light or dark setting. Colours in the theme are CSS variables with a dark variant, so do not hard-code colours on slides.
 - Slides show code by importing a C# region from the lab's projects, so the code on a slide always compiles:
   ```md
