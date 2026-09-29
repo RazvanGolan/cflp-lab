@@ -19,10 +19,10 @@ Your first programs, console input and output, and your first class
 
 Each session has two parts.
 
-- The lab itself, about an hour and a half. We write code together, and you get an assignment to upload on Moodle.
+- The lab itself, about an hour and a half. We write code together, and you get an assignment to upload on CV UPT.
 - An optional deep dive into how C# and .NET work underneath. It is not graded, and you can leave before it starts.
 
-There are two tests during the semester, on the topics from the labs. The dates will be on Moodle.
+There are two tests during the semester, on the topics from the labs. The dates will be on CV UPT.
 
 Slides and code for every lab are published after the lab at
 
@@ -400,6 +400,6 @@ layout: center
 
 # Assignment
 
-The statement is on Moodle. Upload your solution before the deadline shown there.
+The statement is on CV UPT. Upload your solution before the deadline shown there.
 
 It uses the same ideas as today: reading numbers, loops, and a class with read-only properties, a computed property and `ToString`.

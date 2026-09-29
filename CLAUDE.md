@@ -2,7 +2,7 @@
 
 This repository holds the slides and demo code for the C# laboratory of Fundamental Concepts of Programming Languages (CFLP), a course at the Politehnica University of Timișoara. The site is published at https://razvangolan.github.io/cflp-lab/.
 
-Each weekly session has two parts. The first is the graded lab: a short presentation, code written live, and an assignment that students upload to Moodle. The second is an optional deep dive into how C# and .NET work underneath (IL, the JIT, the garbage collector and so on). Students may leave before it.
+Each weekly session has two parts. The first is the graded lab: a short presentation, code written live, and an assignment that students upload to CV UPT. The second is optional and not graded: after an introduction to how .NET works in week 1, the class builds one real application together across the semester (web API, database, React interface, Aspire, telemetry, deployment). Students may leave before it.
 
 ## Layout
 
