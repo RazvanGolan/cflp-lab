@@ -37,7 +37,7 @@ flowchart LR
   A[Program.cs] --> B[C# compiler] --> C[.dll with IL] --> D[runtime and JIT] --> E[machine code]
 ```
 
-The compiler does not produce machine code. It produces IL (intermediate language), a set of instructions that is the same on every processor. The runtime translates IL into machine code for the processor it runs on, one method at a time, the first time the method is called. The part that does this is the JIT (just-in-time) compiler.
+Your code is compiled twice: once by the C# compiler into IL (intermediate language), and again by the runtime into machine code while the program runs.
 
 ---
 
@@ -93,123 +93,41 @@ With top-level statements the compiler still creates a class and a `Main` method
 
 ---
 
-# IL is just bytes
+# What is inside the `.dll`
 
-<<< @/code/UnderTheHood/Program.cs#calculator cs
+The `.dll` does not contain machine code. It contains IL, a list of simple instructions for an imaginary processor that works with a stack: push two values, add them, return the result.
 
-<<< @/code/UnderTheHood/Program.cs#il cs
-
-```text
-IL of Add: 0203582A
-```
-
-The whole method `Add` is four bytes of IL.
-
----
-
-# Reading the four bytes
-
-| Byte | Instruction | Meaning |
-|---|---|---|
-| `02` | `ldarg.0` | push argument `a` on the stack |
-| `03` | `ldarg.1` | push argument `b` on the stack |
-| `58` | `add` | pop two values, push their sum |
-| `2A` | `ret` | return the value on top of the stack |
-
-IL works like a stack machine. It knows nothing about registers or processors.
-
----
-
-# Watching the JIT
-
-The runtime can report every method it compiles. Set an environment variable and run the program:
-
-```bash
-DOTNET_JitDisasmSummary=1 ./bin/Release/net10.0/UnderTheHood | grep -E "Main|Calculator"
-```
-
-```text
-1: JIT compiled Program:<Main>$(System.String[]) [Instrumented Tier0, IL size=210, code size=980]
-4: JIT compiled Calculator:Add(long,long) [Tier0, IL size=4, code size=36]
-5: JIT compiled Program:<Main>$(System.String[]) [Tier1-OSR @0x9f ..., code size=2276]
-6: JIT compiled Calculator:Add(long,long) [Instrumented Tier0, IL size=4, code size=36]
-7: JIT compiled Calculator:Add(long,long) [Tier1, IL size=4, code size=20]
-```
-
-`Add` was compiled three times.
+IL is the same on every computer. The method `Add` from the demo is four bytes of it.
 
 <!--
-Run the program itself, not `dotnet run`: the `dotnet` command is also a .NET program and would print its own methods too.
-The loop calls Add 100 million times so the runtime has a reason to optimize it.
+LIVE: open UnderTheHood.dll in the tool of your choice and show the IL of Calculator.Add
+(ldarg.0, ldarg.1, add, ret). The program itself prints the raw bytes: 0203582A.
 -->
 
 ---
 
-# Tiered compilation
+# The JIT
 
-The first time a method is called, the JIT compiles it quickly and without optimizations (Tier0), so the program starts fast.
+When a method is called for the first time, the runtime's JIT (just-in-time) compiler turns its IL into machine code for the processor it is running on.
 
-The runtime counts the calls. When a method is called often, the JIT compiles it again, this time optimized (Tier1). In between, an instrumented version collects data about how the method is used.
+It first compiles quickly, without optimizations, so the program starts fast. If a method turns out to be called often, the JIT compiles it again, this time optimized.
 
-`Main` runs only once but contains a long loop, so the runtime replaces it while it is running. That is the `OSR` (on-stack replacement) line.
+<!--
+Optional demo, run the program directly (not `dotnet run`, which prints its own methods too):
 
----
-layout: two-cols-header
----
+  DOTNET_JitDisasmSummary=1 ./bin/Release/net10.0/UnderTheHood | grep Calculator
 
-# Tier0 and Tier1
-
-```bash
-DOTNET_JitDisasm='Calculator:Add' ./bin/Release/net10.0/UnderTheHood
-```
-
-::left::
-
-Tier0, 36 bytes:
-
-```text
-stp  fp, lr, [sp, #-0x20]!
-mov  fp, sp
-str  x0, [fp, #0x18]
-str  x1, [fp, #0x10]
-ldr  x0, [fp, #0x18]
-ldr  x1, [fp, #0x10]
-add  x0, x0, x1
-ldp  fp, lr, [sp], #0x20
-ret  lr
-```
-
-::right::
-
-<div class="pl-6">
-
-Tier1, 20 bytes:
-
-```text
-stp  fp, lr, [sp, #-0x10]!
-mov  fp, sp
-add  x0, x0, x1
-ldp  fp, lr, [sp], #0x10
-ret  lr
-```
-
-Tier0 copies `a` and `b` to memory and reads them back. Tier1 adds the two registers directly.
-
-</div>
+Add appears three times: Tier0 (36 bytes), Instrumented Tier0, Tier1 (20 bytes).
+To see the machine code: DOTNET_JitDisasm='Calculator:Add' ./bin/Release/net10.0/UnderTheHood
+-->
 
 ---
 
-# Same IL, different machine code
+# Why the same program runs everywhere
 
-The listing on the previous slide comes from an ARM64 processor (a Mac). The lab computers use x64 processors, so the same command prints different instructions there.
+The `.dll` you build on Windows is the same file on Linux or macOS. Only the machine code the JIT produces is different, because each processor has its own instructions.
 
-The `.dll` is identical on both. Only the JIT output changes, which is why you can copy a .NET program from Windows to Linux or macOS and run it, as long as the runtime is installed.
-
-Try it on the lab computer:
-
-```bash
-DOTNET_JitDisasm='Calculator:Add' ./bin/Release/net10.0/UnderTheHood
-```
+That is why a .NET program runs on any computer that has the runtime installed.
 
 ---
 
