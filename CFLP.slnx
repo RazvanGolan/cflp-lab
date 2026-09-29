@@ -6,6 +6,7 @@
     <Project Path="labs/01-intro/code/Hello/Hello.csproj" />
     <Project Path="labs/01-intro/code/Library/Library.csproj" />
     <Project Path="labs/01-intro/code/Temperatures/Temperatures.csproj" />
+    <Project Path="labs/01-intro/code/TopLevel/TopLevel.csproj" />
     <Project Path="labs/01-intro/code/UnderTheHood/UnderTheHood.csproj" />
   </Folder>
 </Solution>

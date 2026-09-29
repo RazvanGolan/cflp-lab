@@ -10,6 +10,7 @@ Your first programs, console input and output, and your first class.
 |---|---|
 | [`Hello`](code/Hello) | The program `dotnet new console` creates, with top-level statements |
 | [`ClassicMain`](code/ClassicMain) | The same program with an explicit class and `Main` method |
+| [`TopLevel`](code/TopLevel) | How a program with top-level statements runs: order of statements, a function, `args` |
 | [`ConsoleIO`](code/ConsoleIO) | Printing with string interpolation, reading input, `int.Parse` and `int.TryParse` |
 | [`Temperatures`](code/Temperatures) | Reading `n` numbers into an array and computing the minimum, maximum and average |
 | [`Library`](code/Library) | A `Book` class with read-only properties, a computed property and `ToString` |

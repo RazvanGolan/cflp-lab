@@ -71,17 +71,54 @@ Open the folder in the editor for the next slide.
 
 ---
 
-# What `dotnet new` created
+# The project file: `.csproj`
+
+`dotnet new console` created a folder with two files, `Hello.csproj` and `Program.cs`.
 
 <<< @/code/Hello/Hello.csproj xml
 
+A project is one `.csproj` file plus every `.cs` file in its folder and subfolders. You do not list the `.cs` files anywhere. Building the project produces one program.
+
+---
+
+# What the settings mean
+
 <v-clicks>
 
+- `OutputType` is `Exe`, so the build produces a program you can run. Without it you get a library, code that other projects use.
 - `TargetFramework` says which version of .NET the program runs on.
 - `ImplicitUsings` imports common namespaces such as `System`, so you can write `Console` instead of `System.Console`.
 - `Nullable` makes the compiler warn you when a value might be `null`.
 
 </v-clicks>
+
+---
+
+# Solutions: `.slnx`
+
+A solution groups projects so you can open and build them together. Visual Studio and Rider create one for you. From the command line:
+
+```bash
+dotnet new sln -n Shop
+dotnet new console -n Shop.App
+dotnet sln add Shop.App
+```
+
+`Shop.slnx` only lists the projects:
+
+```xml
+<Solution>
+  <Project Path="Shop.App/Shop.App.csproj" />
+</Solution>
+```
+
+Older solutions use `.sln`, a format with the same purpose that is harder to read. This repository has one solution, `CFLP.slnx`, with every project from the labs.
+
+<!--
+A solution does not change how the code compiles. It is a list of projects for the editor and for `dotnet build`.
+-->
+
+
 
 ---
 layout: two-cols
@@ -104,6 +141,35 @@ Only one file in a project can do this.
 You will still see this form in older code and in documentation.
 
 </div>
+
+---
+
+# How a top-level program runs
+
+<<< @/code/TopLevel/Program.cs#statements cs
+
+<<< @/code/TopLevel/Program.cs#function cs
+
+The statements run from top to bottom. Functions such as `Add` can be written after them. Classes go at the end of the file or in their own files.
+
+---
+
+# Command-line arguments
+
+In a top-level program, `args` holds the words written after `--` on the command line, the same as the `args` parameter of `Main`.
+
+```text
+$ dotnet run
+You passed 0 argument(s)
+
+$ dotnet run -- one two
+You passed 2 argument(s)
+```
+
+<!--
+Only the last line of the TopLevel output is shown here.
+-->
+
 
 ---
 
