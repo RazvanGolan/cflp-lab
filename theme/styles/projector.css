@@ -39,6 +39,27 @@
   color: #3b1fa3;
 }
 
+/* The default theme fades the paragraph after a heading (a subtitle style).
+   Only the cover uses subtitles; everywhere else that paragraph is content. */
+.slidev-layout:not(.cover) h1 + p {
+  opacity: 1;
+  margin-top: 0;
+}
+
+/* Columns are half as wide, so code in them is a little smaller. */
+.slidev-layout.two-columns pre,
+.slidev-layout.two-columns pre code,
+.slidev-layout.two-cols-header pre,
+.slidev-layout.two-cols-header pre code {
+  font-size: 0.85rem !important;
+}
+
+/* Wrap long lines instead of cutting them off at the slide edge. */
+.slidev-layout pre code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 /* Dimmed lines during step-by-step highlighting: 0.3 disappears on a projector. */
 .slidev-code .slidev-code-dishonored {
   opacity: 0.45;

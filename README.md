@@ -13,7 +13,7 @@ You need the [.NET 10 SDK](https://dotnet.microsoft.com/download). Then:
 ```bash
 git clone https://github.com/RazvanGolan/cflp-lab.git
 cd cflp-lab
-dotnet run --project labs/01-intro/code/HelloWorld
+dotnet run --project labs/01-intro/code/Hello
 ```
 
 Every folder under `labs/NN-topic/code/` is an independent console project, so you can open just the one you need.

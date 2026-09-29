@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { BRANCH, REPO_URL } from '../config'
 
-// Path relative to the repository root, e.g. "labs/01-intro/code/HelloWorld".
+// Path relative to the repository root, e.g. "labs/01-intro/code/Hello".
 const props = defineProps<{ path: string }>()
 
 const href = computed(() => `${REPO_URL}/tree/${BRANCH}/${props.path}`)

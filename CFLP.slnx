@@ -1,6 +1,11 @@
 <Solution>
   <Folder Name="/labs/" />
   <Folder Name="/labs/01-intro/">
-    <Project Path="labs/01-intro/code/HelloWorld/HelloWorld.csproj" />
+    <Project Path="labs/01-intro/code/ClassicMain/ClassicMain.csproj" />
+    <Project Path="labs/01-intro/code/ConsoleIO/ConsoleIO.csproj" />
+    <Project Path="labs/01-intro/code/Hello/Hello.csproj" />
+    <Project Path="labs/01-intro/code/Library/Library.csproj" />
+    <Project Path="labs/01-intro/code/Temperatures/Temperatures.csproj" />
+    <Project Path="labs/01-intro/code/UnderTheHood/UnderTheHood.csproj" />
   </Folder>
 </Solution>

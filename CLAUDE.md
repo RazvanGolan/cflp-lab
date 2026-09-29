@@ -22,7 +22,7 @@ CFLP.slnx          lists every demo project
 
 ```bash
 dotnet build CFLP.slnx                          # build all demo code
-dotnet run --project labs/01-intro/code/HelloWorld
+dotnet run --project labs/01-intro/code/Hello
 
 npm install                                     # once
 npm run dev -- labs/01-intro/slides.md          # edit one deck with live reload
@@ -56,9 +56,9 @@ CI (`.github/workflows/pages.yml`) builds the code with `-warnaserror`, checks t
   `routerMode: hash` is required because GitHub Pages cannot serve deep links such as `/slides/3`. The landing page takes the lab name from `title` and strips the `Lab N:` prefix.
 - Slides show code by importing a C# region from the lab's projects, so the code on a slide always compiles:
   ```md
-  <<< @/code/HelloWorld/Program.cs#greeting cs {1-2|4|all}
+  <<< @/code/Library/Program.cs#oldest cs {1|2-8|all}
   ```
-  Mark the region in the C# file with `#region greeting` and `#endregion`. `@` is the lab folder.
+  Mark the region in the C# file with `#region oldest` and `#endregion`. `@` is the lab folder.
 - The slides are shown on one laptop through a projector, with no presenter view. Keep text large and short, and put the instructor's script in HTML comments at the end of a slide.
 - A slide cannot run C#. When the output matters, show it in a `text` block revealed with `v-click`, and keep it in sync with the code by hand.
 
