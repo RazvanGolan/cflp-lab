@@ -10,6 +10,7 @@ import { join, resolve } from 'node:path'
 import { parseArgs } from 'node:util'
 
 const REPO_URL = 'https://github.com/RazvanGolan/cflp-lab'
+const DEFAULT_ACCENT = '#512bd4'
 const DECKS = [
   { file: 'slides.md', kind: 'lab' },
   { file: 'deep-dive.md', kind: 'deep-dive' },
@@ -53,11 +54,26 @@ for (const lab of labs) {
       cwd: root,
     })
 
+    // Point the deck's tab icon at the lab icon written below, instead of Slidev's default.
+    for (const page of ['index.html', '404.html']) {
+      const file = join(out, page)
+      if (!existsSync(file)) continue
+      const html = readFileSync(file, 'utf8').replace(/<link rel="icon"[^>]*>/, '<link rel="icon" type="image/svg+xml" href="../icon.svg">')
+      writeFileSync(file, html)
+    }
+
     entry.decks.push({ ...deck, slug, ...readHeadmatter(source) })
   }
 
-  if (entry.decks.length > 0) entries.push(entry)
+  if (entry.decks.length > 0) {
+    // One icon per lab: its number on its accent colour, shared by both decks.
+    const colour = entry.decks.find((d) => d.primary)?.primary ?? DEFAULT_ACCENT
+    writeFileSync(join(dist, lab, 'icon.svg'), iconSvg(String(entry.week), colour))
+    entries.push(entry)
+  }
 }
+
+writeFileSync(join(dist, 'icon.svg'), iconSvg('C#', DEFAULT_ACCENT))
 
 const template = readFileSync(join(root, 'site', 'index.html'), 'utf8')
 writeFileSync(join(dist, 'index.html'), template.replace('<!-- LABS -->', entries.map(renderLab).join('\n')))
@@ -90,6 +106,16 @@ function renderLab({ lab, week, decks }) {
         <span class="title">${title}</span>
         <span class="links">${links.join('')}</span>
       </li>`
+}
+
+function iconSvg(text, colour) {
+  const size = text.length === 1 ? 42 : 32
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="${colour}"/>
+  <text x="32" y="34" text-anchor="middle" dominant-baseline="central" fill="#fff"
+    font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="${size}" font-weight="700">${escapeHtml(text)}</text>
+</svg>
+`
 }
 
 function escapeHtml(text) {
