@@ -135,4 +135,32 @@ That is why a .NET program runs on any computer that has the runtime installed.
 
 [sharplab.io](https://sharplab.io) shows the same steps for any code you type: the C# the compiler really sees, the IL, and the JIT output. Nothing to install.
 
-Next deep dive: value types, reference types and what happens in memory when you pass them around.
+---
+
+# From next week: we build a real application
+
+In this optional part we build one application together, a little each week, until it runs online with a link you can send to anyone.
+
+Along the way you will write a web API, store data in a database, add a React interface, and see what happens when a service it depends on fails.
+
+It is also a model for your project, if you choose the larger version.
+
+---
+
+# What should we build?
+
+| Application | What it does |
+|---|---|
+| Conference tickets | Buy tickets for events and their sessions |
+| Study room booking | Book a faculty room for a time slot, with no overlaps |
+| Shared expenses | Roommates track who paid what and who owes whom |
+| Library | Borrow books and get reminders when a loan is late |
+| Canteen orders | Order from the menu and follow the order until it is ready |
+
+Think about which one you would use. We vote at the start of next week's optional part.
+
+<!--
+Every option has at least three related entities, background work for week 9, and a second service that can fail for weeks 10 and 11.
+Shared expenses (exchange rates) and Library (Open Library ISBN) call a real public API; keep a fake version ready in case it is down.
+-->
+
