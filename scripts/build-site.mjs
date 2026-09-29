@@ -78,7 +78,7 @@ function renderLab({ lab, week, decks }) {
   const title = escapeHtml(main?.title.replace(/^Lab \d+\s*[:—-]\s*/, '') ?? lab)
   const links = [
     main && `<a href="${lab}/${main.slug}/">Slides</a>`,
-    deepDive && `<a class="optional" href="${lab}/${deepDive.slug}/" title="${escapeHtml(deepDive.title)}">Deep dive</a>`,
+    deepDive && `<a class="optional" href="${lab}/${deepDive.slug}/" title="${escapeHtml(deepDive.title)}">Optional part</a>`,
     `<a href="${REPO_URL}/tree/main/labs/${lab}">Code</a>`,
   ].filter(Boolean)
 
