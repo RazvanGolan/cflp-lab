@@ -73,7 +73,7 @@ function readTitle(file) {
 function renderLab({ lab, week, decks }) {
   const main = decks.find((d) => d.kind === 'lab')
   const deepDive = decks.find((d) => d.kind === 'deep-dive')
-  const title = escapeHtml(main?.title.replace(/^Lab \d+\s*[—-]\s*/, '') ?? lab)
+  const title = escapeHtml(main?.title.replace(/^Lab \d+\s*[:—-]\s*/, '') ?? lab)
   const links = [
     main && `<a href="${lab}/${main.slug}/">Slides</a>`,
     deepDive && `<a class="optional" href="${lab}/${deepDive.slug}/" title="${escapeHtml(deepDive.title)}">Deep dive</a>`,

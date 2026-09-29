@@ -1,6 +1,6 @@
-# Lab 1 — Introduction to C#
+# Lab 1: Introduction to C#
 
-**Slides:** [lab](https://razvangolan.github.io/cflp-lab/01-intro/slides/) · [deep dive (optional)](https://razvangolan.github.io/cflp-lab/01-intro/deep-dive/)
+Slides: [lab](https://razvangolan.github.io/cflp-lab/01-intro/slides/) · [deep dive (optional)](https://razvangolan.github.io/cflp-lab/01-intro/deep-dive/)
 
 ## Code
 

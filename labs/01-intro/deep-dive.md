@@ -1,7 +1,7 @@
 ---
 theme: ../../theme
 routerMode: hash
-title: "Deep dive 1 — What is .NET?"
+title: "Deep dive 1: What is .NET?"
 info: |
   CFLP laboratory, week 1, optional part.
 week: 1
@@ -10,7 +10,7 @@ layout: cover
 class: optional-divider
 ---
 
-# Deep dive — What is .NET?
+# Deep dive: What is .NET?
 
 Optional · not graded · feel free to leave
 
@@ -20,4 +20,4 @@ Optional · not graded · feel free to leave
 
 C# → Roslyn → IL → CLR → JIT → native code
 
-*(placeholder — content comes with lab 1)*
+*(Placeholder. The content will be added with lab 1.)*

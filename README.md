@@ -1,8 +1,8 @@
 # CFLP Lab
 
-Slides and demo code for the C# laboratory of **Fundamental Concepts of Programming Languages** (CFLP).
+Slides and demo code for the C# laboratory of Fundamental Concepts of Programming Languages (CFLP).
 
-**Slides:** https://razvangolan.github.io/cflp-lab/
+Slides: https://razvangolan.github.io/cflp-lab/
 
 Each lab is published after it takes place. Assignments and deadlines are on Moodle.
 
