@@ -1,0 +1,63 @@
+name: Build and publish
+
+on:
+  push:
+    branches: [main, next]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Every project is in CFLP.slnx
+        run: |
+          missing=0
+          for p in $(find labs -name '*.csproj'); do
+            dotnet sln CFLP.slnx list | grep -qxF "$p" || { echo "::error::$p is not in CFLP.slnx"; missing=1; }
+          done
+          exit $missing
+
+      - name: Build all demo code
+        run: dotnet build CFLP.slnx --configuration Release -warnaserror
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build slides and landing page
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: dist
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

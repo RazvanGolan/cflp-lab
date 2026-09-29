@@ -1,0 +1,21 @@
+# .NET build output
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Live-coding area used during the lab (never committed)
+scratch/
+
+# Node / Slidev
+node_modules/
+dist/
+.slidev/
+
+.DS_Store

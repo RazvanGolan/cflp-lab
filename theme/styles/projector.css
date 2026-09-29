@@ -1,0 +1,57 @@
+/* Tuned for a classroom projector: light background, large type, high contrast. */
+
+:root {
+  --cflp-accent: #512bd4; /* .NET purple */
+  --cflp-muted: #5b5b66;
+}
+
+.slidev-layout {
+  font-size: 1.35rem;
+  line-height: 1.55;
+  color: #1a1a1f;
+}
+
+.slidev-layout h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--cflp-accent);
+  margin-bottom: 1rem;
+}
+
+.slidev-layout h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--cflp-muted);
+}
+
+/* Code blocks: bigger than Slidev's default so the back row can read them. */
+.slidev-layout pre,
+.slidev-layout pre code {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.slidev-layout :not(pre) > code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: #efeaff;
+  color: #3b1fa3;
+}
+
+/* Dimmed lines during step-by-step highlighting: 0.3 disappears on a projector. */
+.slidev-code .slidev-code-dishonored {
+  opacity: 0.45;
+}
+
+/* Keep the cover title and subtitle together, vertically centred. */
+.slidev-layout.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Section divider between the graded lab and the optional deep dive. */
+.slidev-layout.optional-divider {
+  background: #f4f1ff;
+}
