@@ -54,6 +54,27 @@ CI (`.github/workflows/pages.yml`) builds the code with `-warnaserror`, checks t
   ---
   ```
   `routerMode: hash` is required because GitHub Pages cannot serve deep links such as `/slides/3`. The landing page takes the lab name from `title` and strips the `Lab N:` prefix.
+- Each lab has its own accent colour, set in the headmatter of both its decks. The theme derives the dark-mode shade and the other tints from it, and the landing page uses it for that lab's row:
+  ```yaml
+  themeConfig:
+    primary: '#512bd4'
+  ```
+  Use the next unused colour from this list, so that neighbouring labs look different. Each one has enough contrast on a white background.
+
+  | Lab | Colour | |
+  |---|---|---|
+  | 1 | `#512bd4` | .NET purple |
+  | 2 | `#0f766e` | teal |
+  | 3 | `#1d4ed8` | blue |
+  | 4 | `#be123c` | rose |
+  | 5 | `#b45309` | amber |
+  | 6 | `#15803d` | green |
+  | 7 | `#a21caf` | magenta |
+  | 9 | `#0369a1` | sky |
+  | 10 | `#c2410c` | orange |
+  | 11 | `#4d7c0f` | olive |
+  | 12 | `#334155` | slate |
+- Slides and the landing page follow the viewer's light or dark setting. Colours in the theme are CSS variables with a dark variant, so do not hard-code colours on slides.
 - Slides show code by importing a C# region from the lab's projects, so the code on a slide always compiles:
   ```md
   <<< @/code/Library/Program.cs#oldest cs {1|2-8|all}

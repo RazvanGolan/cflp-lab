@@ -36,12 +36,22 @@
     .subtitle { margin: 0 0 32px; color: var(--muted); }
     ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
     li {
+      /* --lab is set per row from the deck's themeConfig.primary. */
+      --lab-accent: var(--lab, var(--accent));
+      --lab-soft: color-mix(in srgb, var(--lab-accent) 12%, var(--bg));
       display: grid;
       grid-template-columns: 80px 1fr auto;
       gap: 12px;
       align-items: center;
-      padding: 14px 0;
+      padding: 14px 0 14px 14px;
       border-bottom: 1px solid var(--line);
+      border-left: 4px solid var(--lab-accent);
+    }
+    @media (prefers-color-scheme: dark) {
+      li {
+        --lab-accent: color-mix(in srgb, var(--lab, var(--accent)) 50%, white);
+        --lab-soft: color-mix(in srgb, var(--lab, var(--accent)) 28%, var(--bg));
+      }
     }
     .week { color: var(--muted); font-variant-numeric: tabular-nums; }
     .title { font-weight: 600; }
@@ -49,13 +59,13 @@
     .links a {
       padding: 4px 10px;
       border-radius: 6px;
-      background: var(--accent-soft);
-      color: var(--accent);
+      background: var(--lab-soft);
+      color: var(--lab-accent);
       text-decoration: none;
       font-size: 0.9rem;
       white-space: nowrap;
     }
-    .links a.optional { background: transparent; border: 1px dashed var(--accent); }
+    .links a.optional { background: transparent; border: 1px dashed var(--lab-accent); }
     .links a:hover { text-decoration: underline; }
     footer { margin-top: 32px; color: var(--muted); font-size: 0.9rem; }
     footer a { color: var(--accent); }

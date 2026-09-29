@@ -1,16 +1,20 @@
 {
   "name": "slidev-theme-cflp",
   "private": true,
-  "keywords": ["slidev-theme"],
+  "keywords": [
+    "slidev-theme"
+  ],
   "engines": {
     "slidev": ">=52.0.0"
   },
   "slidev": {
-    "colorSchema": "light",
+    "colorSchema": "auto",
     "highlighter": "shiki",
     "defaults": {
       "transition": "none",
-      "drawings": { "persist": false },
+      "drawings": {
+        "persist": false
+      },
       "fonts": {
         "sans": "Inter",
         "mono": "JetBrains Mono"

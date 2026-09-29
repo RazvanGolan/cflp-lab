@@ -1,6 +1,8 @@
 ---
 theme: ../../theme
 routerMode: hash
+themeConfig:
+  primary: '#512bd4'
 title: "Lab 1: Introduction to C#"
 info: |
   CFLP laboratory, week 1.

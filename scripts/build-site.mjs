@@ -53,7 +53,7 @@ for (const lab of labs) {
       cwd: root,
     })
 
-    entry.decks.push({ ...deck, slug, title: readTitle(source) })
+    entry.decks.push({ ...deck, slug, ...readHeadmatter(source) })
   }
 
   if (entry.decks.length > 0) entries.push(entry)
@@ -64,10 +64,12 @@ writeFileSync(join(dist, 'index.html'), template.replace('<!-- LABS -->', entrie
 writeFileSync(join(dist, '.nojekyll'), '')
 console.log(`\n✔ Built ${entries.length} lab(s) into dist/`)
 
-function readTitle(file) {
-  const frontmatter = readFileSync(file, 'utf8').match(/^---\n([\s\S]*?)\n---/)
-  const title = frontmatter?.[1].match(/^title:\s*"?(.*?)"?\s*$/m)
-  return title?.[1] ?? file
+// Reads the deck title and its accent colour (themeConfig.primary) from the headmatter.
+function readHeadmatter(file) {
+  const headmatter = readFileSync(file, 'utf8').match(/^---\n([\s\S]*?)\n---/)?.[1] ?? ''
+  const title = headmatter.match(/^title:\s*"?(.*?)"?\s*$/m)?.[1] ?? file
+  const primary = headmatter.match(/^\s+primary:\s*['"]?(#[0-9a-fA-F]{3,8})['"]?\s*$/m)?.[1]
+  return { title, primary }
 }
 
 function renderLab({ lab, week, decks }) {
@@ -80,7 +82,10 @@ function renderLab({ lab, week, decks }) {
     `<a href="${REPO_URL}/tree/main/labs/${lab}">Code</a>`,
   ].filter(Boolean)
 
-  return `      <li>
+  const accent = main?.primary ?? deepDive?.primary
+  const style = accent ? ` style="--lab: ${accent}"` : ''
+
+  return `      <li${style}>
         <span class="week">Week ${week}</span>
         <span class="title">${title}</span>
         <span class="links">${links.join('')}</span>

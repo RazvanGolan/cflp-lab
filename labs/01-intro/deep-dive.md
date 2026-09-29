@@ -1,6 +1,8 @@
 ---
 theme: ../../theme
 routerMode: hash
+themeConfig:
+  primary: '#512bd4'
 title: "Deep dive 1: What is .NET?"
 info: |
   CFLP laboratory, week 1, optional part.

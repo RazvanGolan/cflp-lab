@@ -1,14 +1,36 @@
-/* Tuned for a classroom projector: light background, large type, high contrast. */
+/* Tuned for a classroom projector: large type, high contrast, light and dark modes.
 
-:root {
-  --cflp-accent: #512bd4; /* .NET purple */
+   Each deck sets its accent colour in the headmatter:
+     themeConfig:
+       primary: '#512bd4'
+   Slidev puts it on <body> as --slidev-theme-primary. Everything below is derived
+   from it, so a new colour needs no CSS changes. The variables are declared on
+   .slidev-layout (a descendant of <body>) so that var() can see the deck colour. */
+
+.slidev-layout {
+  --cflp-primary: var(--slidev-theme-primary, #512bd4);
+  --cflp-accent: var(--cflp-primary);
+  --cflp-fg: #1a1a1f;
   --cflp-muted: #5b5b66;
+  --cflp-code-bg: color-mix(in srgb, var(--cflp-primary) 10%, white);
+  --cflp-code-fg: color-mix(in srgb, var(--cflp-primary) 75%, black);
+  --cflp-divider-bg: color-mix(in srgb, var(--cflp-primary) 7%, white);
+}
+
+/* On a dark background the accent is mixed with white so it keeps enough contrast. */
+html.dark .slidev-layout {
+  --cflp-accent: color-mix(in srgb, var(--cflp-primary) 50%, white);
+  --cflp-fg: #ececf1;
+  --cflp-muted: #a0a0ad;
+  --cflp-code-bg: color-mix(in srgb, var(--cflp-primary) 28%, #16161a);
+  --cflp-code-fg: color-mix(in srgb, var(--cflp-primary) 35%, white);
+  --cflp-divider-bg: color-mix(in srgb, var(--cflp-primary) 16%, #121212);
 }
 
 .slidev-layout {
   font-size: 1.35rem;
   line-height: 1.55;
-  color: #1a1a1f;
+  color: var(--cflp-fg);
 }
 
 .slidev-layout h1 {
@@ -24,6 +46,10 @@
   color: var(--cflp-muted);
 }
 
+.slidev-layout a {
+  color: var(--cflp-accent);
+}
+
 /* Code blocks: bigger than Slidev's default so the back row can read them. */
 .slidev-layout pre,
 .slidev-layout pre code {
@@ -35,8 +61,8 @@
   font-size: 0.9em;
   padding: 0.1em 0.35em;
   border-radius: 4px;
-  background: #efeaff;
-  color: #3b1fa3;
+  background: var(--cflp-code-bg);
+  color: var(--cflp-code-fg);
 }
 
 /* The default theme fades the paragraph after a heading (a subtitle style).
@@ -74,5 +100,5 @@
 
 /* Section divider between the graded lab and the optional deep dive. */
 .slidev-layout.optional-divider {
-  background: #f4f1ff;
+  background: var(--cflp-divider-bg);
 }
