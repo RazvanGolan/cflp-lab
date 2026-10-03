@@ -20,4 +20,7 @@
     <Project Path="labs/03-parameters/code/Maximum/Maximum.csproj" />
     <Project Path="labs/03-parameters/code/OutParameters/OutParameters.csproj" />
   </Folder>
+  <Folder Name="/labs/04-inheritance/">
+    <Project Path="labs/04-inheritance/code/Streaming/Streaming.csproj" />
+  </Folder>
 </Solution>
