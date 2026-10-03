@@ -330,6 +330,10 @@ if (Enum.TryParse(text, ignoreCase: true, out Weather weather)
 
 </div>
 
+<!--
+The Weather project already has the IsDefined check. Remove it to show 42 live, then put it back.
+-->
+
 ---
 layout: two-cols
 ---
@@ -829,6 +833,7 @@ The loop does not know which shape it holds, and it never needs to check. Each o
 
 <!--
 Pre-written project, run it rather than typing.
+On a machine with Romanian settings the output uses commas (3,14), the same decimal separator issue as in lab 1.
 If someone asks: a struct stored as an IShape is copied into an object on the heap (boxing).
 -->
 

@@ -148,9 +148,21 @@ You will still see this form in older code and in documentation.
 
 # How a top-level program runs
 
-<<< @/code/TopLevel/Program.cs#statements cs
+```cs
+Console.WriteLine("Statements run from top to bottom.");
 
-<<< @/code/TopLevel/Program.cs#function cs
+int total = Add(2, 3);
+Console.WriteLine($"2 + 3 = {total}");
+
+Console.WriteLine($"You passed {args.Length} argument(s)");
+```
+
+```cs
+int Add(int a, int b)
+{
+    return a + b;
+}
+```
 
 The statements run from top to bottom. Functions such as `Add` can be written after them. Classes go at the end of the file or in their own files.
 
@@ -177,7 +189,15 @@ Only the last line of the TopLevel output is shown here.
 
 # Writing to the console
 
-<<< @/code/ConsoleIO/Program.cs#output cs {1-3|5|6|7|all}
+```cs {1-3|5|6|7|all}
+string name = "Ana";
+int year = 2;
+double average = 9.456;
+
+Console.WriteLine("Name: " + name);
+Console.WriteLine($"{name} is in year {year}");
+Console.WriteLine($"Average: {average:F2}");
+```
 
 <div v-click>
 
@@ -198,7 +218,12 @@ Average: 9.46
 
 # Reading input
 
-<<< @/code/ConsoleIO/Program.cs#parse cs {2|3|4|all}
+```cs {2|3|4|all}
+Console.Write("How old are you? ");
+string line = Console.ReadLine() ?? "";
+int age = int.Parse(line);
+Console.WriteLine($"Next year you will be {age + 1}");
+```
 
 `ReadLine` returns `string?`: a string, or `null` when there is no more input. `?? ""` replaces `null` with an empty string.
 
@@ -221,7 +246,15 @@ LIVE: run it, type abc, let it crash. Ask the class before revealing.
 
 # Parsing without crashing
 
-<<< @/code/ConsoleIO/Program.cs#tryparse cs {3|3-6|all}
+```cs {3|3-6|all}
+Console.Write("How many siblings do you have? ");
+int siblings;
+while (!int.TryParse(Console.ReadLine(), out siblings))
+{
+    Console.Write("That is not a whole number. Try again: ");
+}
+Console.WriteLine($"You have {siblings} sibling(s)");
+```
 
 `int.TryParse` returns `false` instead of throwing. The number comes back through the `out` parameter, which we cover in lab 3.
 
@@ -264,7 +297,17 @@ Check the lab machines' locale before the lab (`locale` in a terminal).
 
 # Arrays and loops
 
-<<< @/code/Temperatures/Program.cs#read cs {2|4|5-9|all}
+```cs {2|4|5-9|all}
+Console.Write("How many days? ");
+int n = int.Parse(Console.ReadLine() ?? "");
+
+double[] temperatures = new double[n];
+for (int i = 0; i < n; i++)
+{
+    Console.Write($"Day {i + 1}: ");
+    temperatures[i] = double.Parse(Console.ReadLine() ?? "");
+}
+```
 
 `new double[n]` creates an array of `n` elements, all set to `0`. Indexes go from `0` to `n - 1`.
 
@@ -276,7 +319,20 @@ LIVE: write this part from an empty Program.cs.
 
 # Minimum, maximum, average
 
-<<< @/code/Temperatures/Program.cs#stats cs {1-3|5-10|12|all}
+```cs {1-3|5-10|12|all}
+double min = temperatures[0];
+double max = temperatures[0];
+double sum = 0;
+
+foreach (double t in temperatures)
+{
+    if (t < min) min = t;
+    if (t > max) max = t;
+    sum += t;
+}
+
+Console.WriteLine($"Min: {min}, max: {max}, average: {sum / n:F1}");
+```
 
 <div v-click>
 
@@ -305,9 +361,20 @@ Answer to the question: temperatures[0] throws IndexOutOfRangeException, because
 
 # Your first class
 
-<<< @/code/Library/Book.cs#properties cs
+```cs
+public string Title { get; }
+public string Author { get; }
+public int Year { get; }
+```
 
-<<< @/code/Library/Book.cs#constructor cs
+```cs
+public Book(string title, string author, int year)
+{
+    Title = title;
+    Author = author;
+    Year = year;
+}
+```
 
 A property with only `get` can be set in the constructor and never changed afterwards. That makes it read-only.
 
@@ -320,11 +387,18 @@ Try `book.Year = 2000;` in Program.cs to show the compiler error.
 
 # A computed property and `ToString`
 
-<<< @/code/Library/Book.cs#computed cs
+```cs
+public int Century => (Year - 1) / 100 + 1;
+```
 
 `Century` has no stored value. It is calculated every time you read it. Dividing two `int` values gives an `int`: `(1869 - 1) / 100` is `18`, so the century is `19`.
 
-<<< @/code/Library/Book.cs#tostring cs
+```cs
+public override string ToString()
+{
+    return $"{Title} by {Author}, {Year} (century {Century})";
+}
+```
 
 <v-click>
 
@@ -344,7 +418,19 @@ LIVE: first print a book without ToString to show `Library.Book`, then add the o
 
 # Using the class
 
-<<< @/code/Library/Program.cs#books cs {1-6|8-11|all}
+```cs {1-6|8-11|all}
+Book[] books =
+[
+    new Book("War and Peace", "Leo Tolstoy", 1869),
+    new Book("The Hobbit", "J. R. R. Tolkien", 1937),
+    new Book("Dune", "Frank Herbert", 1965),
+];
+
+foreach (Book book in books)
+{
+    Console.WriteLine(book);
+}
+```
 
 <div v-click>
 
@@ -365,7 +451,18 @@ The [ ... ] syntax is a collection expression (C# 12). `new Book[3]` plus assign
 
 # Finding the oldest book
 
-<<< @/code/Library/Program.cs#oldest cs {1|2-8|10|all}
+```cs {1|2-8|10|all}
+Book oldest = books[0];
+foreach (Book book in books)
+{
+    if (book.Year < oldest.Year)
+    {
+        oldest = book;
+    }
+}
+
+Console.WriteLine($"Oldest: {oldest.Title}");
+```
 
 <div v-click>
 

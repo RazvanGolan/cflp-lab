@@ -1,6 +1,5 @@
 using Library;
 
-#region books
 Book[] books =
 [
     new Book("War and Peace", "Leo Tolstoy", 1869),
@@ -12,9 +11,7 @@ foreach (Book book in books)
 {
     Console.WriteLine(book);
 }
-#endregion
 
-#region oldest
 Book oldest = books[0];
 foreach (Book book in books)
 {
@@ -25,4 +22,3 @@ foreach (Book book in books)
 }
 
 Console.WriteLine($"Oldest: {oldest.Title}");
-#endregion

@@ -9,4 +9,10 @@
     <Project Path="labs/01-intro/code/TopLevel/TopLevel.csproj" />
     <Project Path="labs/01-intro/code/UnderTheHood/UnderTheHood.csproj" />
   </Folder>
+  <Folder Name="/labs/02-types/">
+    <Project Path="labs/02-types/code/Shapes/Shapes.csproj" />
+    <Project Path="labs/02-types/code/TaskBoard/TaskBoard.csproj" />
+    <Project Path="labs/02-types/code/ValueVsReference/ValueVsReference.csproj" />
+    <Project Path="labs/02-types/code/Weather/Weather.csproj" />
+  </Folder>
 </Solution>

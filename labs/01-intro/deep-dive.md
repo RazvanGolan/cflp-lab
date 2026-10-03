@@ -85,7 +85,10 @@ When you start the program, `dotnet` reads this file and looks for runtime 10.0.
 
 # Where `Main` went
 
-<<< @/code/UnderTheHood/Program.cs#entry cs
+```cs
+MethodInfo entry = Assembly.GetEntryAssembly()!.EntryPoint!;
+Console.WriteLine($"Entry point: {entry.DeclaringType}.{entry.Name}");
+```
 
 ```text
 Entry point: Program.<Main>$

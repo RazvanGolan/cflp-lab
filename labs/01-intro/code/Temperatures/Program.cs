@@ -1,4 +1,3 @@
-#region read
 Console.Write("How many days? ");
 int n = int.Parse(Console.ReadLine() ?? "");
 
@@ -8,9 +7,7 @@ for (int i = 0; i < n; i++)
     Console.Write($"Day {i + 1}: ");
     temperatures[i] = double.Parse(Console.ReadLine() ?? "");
 }
-#endregion
 
-#region stats
 double min = temperatures[0];
 double max = temperatures[0];
 double sum = 0;
@@ -23,4 +20,3 @@ foreach (double t in temperatures)
 }
 
 Console.WriteLine($"Min: {min}, max: {max}, average: {sum / n:F1}");
-#endregion

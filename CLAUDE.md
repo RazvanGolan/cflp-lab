@@ -76,11 +76,11 @@ CI (`.github/workflows/pages.yml`) builds the code with `-warnaserror`, checks t
   | 12 | `#334155` | slate |
 - The build script also draws each lab's tab icon (the lab number on its accent colour) and the site icon ("C#"), so a new lab needs no icon work.
 - Slides and the landing page follow the viewer's light or dark setting. Colours in the theme are CSS variables with a dark variant, so do not hard-code colours on slides.
-- Slides show code by importing a C# region from the lab's projects, so the code on a slide always compiles:
+- Demo code has no `#region` markers. A slide that shows a whole file imports it, so that code always compiles:
   ```md
-  <<< @/code/Library/Program.cs#oldest cs {1|2-8|all}
+  <<< @/code/Hello/Program.cs cs
   ```
-  Mark the region in the C# file with `#region oldest` and `#endregion`. `@` is the lab folder.
+  `@` is the lab folder. A slide that shows part of a file has the code in a fenced block. When you change code that a slide shows, change the slide too, and the other way round.
 - The slides are shown on one laptop through a projector, with no presenter view. Keep text large and short, and put the instructor's script in HTML comments at the end of a slide.
 - A slide cannot run C#. When the output matters, show it in a `text` block revealed with `v-click`, and keep it in sync with the code by hand.
 
@@ -98,4 +98,4 @@ READMEs are for students. Instructor notes, such as the publishing workflow, do 
 
 ## Branches
 
-Work happens on `next`. After each lab, `next` is merged into `main`, which publishes that week's slides and code. Anything that reveals the content of a future lab stays on `next` until then.
+Work happens on `main`. A push to `main` publishes the site, so commit and push only when a lab's material is ready to be seen.
