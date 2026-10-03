@@ -167,6 +167,10 @@ Now `m` is the caller's variable, so pointing it to a new object changes `marker
 
 </div>
 
+<!--
+In the ByRef project the ref version is called ReplaceByRef, because two local functions in one file cannot have the same name.
+-->
+
 ---
 
 # What `ref` needs

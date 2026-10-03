@@ -15,4 +15,9 @@
     <Project Path="labs/02-types/code/ValueVsReference/ValueVsReference.csproj" />
     <Project Path="labs/02-types/code/Weather/Weather.csproj" />
   </Folder>
+  <Folder Name="/labs/03-parameters/">
+    <Project Path="labs/03-parameters/code/ByRef/ByRef.csproj" />
+    <Project Path="labs/03-parameters/code/Maximum/Maximum.csproj" />
+    <Project Path="labs/03-parameters/code/OutParameters/OutParameters.csproj" />
+  </Folder>
 </Solution>
