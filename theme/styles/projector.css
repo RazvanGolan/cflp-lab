@@ -57,6 +57,13 @@ html.dark .slidev-layout {
   line-height: 1.5 !important;
 }
 
+/* Show operators as typed: without this the code font draws != as ≠ and => as an arrow. */
+.slidev-layout pre,
+.slidev-layout code {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
 .slidev-layout :not(pre) > code {
   font-size: 0.9em;
   padding: 0.1em 0.35em;
