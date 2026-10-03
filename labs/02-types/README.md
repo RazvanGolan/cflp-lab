@@ -1,6 +1,6 @@
 # Lab 2: Classes, structs, enums and interfaces
 
-Slides: [lab](https://razvangolan.github.io/cflp-lab/02-types/slides/)
+Slides: [lab](https://razvangolan.github.io/cflp-lab/02-types/slides/) · [optional part](https://razvangolan.github.io/cflp-lab/02-types/deep-dive/)
 
 Value and reference types, enums, properties and constructors, static members, and a first interface.
 
