@@ -81,6 +81,7 @@ CI (`.github/workflows/pages.yml`) builds the code with `-warnaserror`, checks t
   <<< @/code/Hello/Program.cs cs
   ```
   `@` is the lab folder. A slide that shows part of a file has the code in a fenced block. When you change code that a slide shows, change the slide too, and the other way round.
+- The application built in the optional part lives in its own repository, `RazvanGolan/study-rooms`, tagged `week-NN` after each session. Optional decks link to it with `<AppLink tag="week-05" />` (the code at the end of the week) or `<AppLink tag="week-05" compare="week-04" />` (what changed that week). Its URL is in `theme/config.ts`.
 - The slides are shown on one laptop through a projector, with no presenter view. Keep text large and short, and put the instructor's script in HTML comments at the end of a slide.
 - A slide cannot run C#. When the output matters, show it in a `text` block revealed with `v-click`, and keep it in sync with the code by hand.
 
