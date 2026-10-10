@@ -29,4 +29,8 @@
     <Project Path="labs/05-generics-delegates/code/Generics/Generics.csproj" />
     <Project Path="labs/05-generics-delegates/code/Playlist/Playlist.csproj" />
   </Folder>
+  <Folder Name="/labs/06-events/">
+    <Project Path="labs/06-events/code/Multicast/Multicast.csproj" />
+    <Project Path="labs/06-events/code/Music/Music.csproj" />
+  </Folder>
 </Solution>
