@@ -30,7 +30,13 @@ The code here is the cleaned-up version of what we wrote live, so it may differ 
 
 ## Before Test 1
 
-Go over the checklists in the last part of the slides, then redo the practice exercise without looking at earlier labs. The full examples are in lab 3 (`out` and `TryParse`), lab 4 (abstract classes) and lab 5 (methods that take a `Func`).
+Go over the checklists in the last part of the slides. The full examples are in lab 3 (`out` and `TryParse`), lab 4 (abstract classes) and lab 5 (methods that take a `Func`).
+
+Then do the practice exercises from the slides in a new project (`dotnet new console -n Parcels`), without looking at earlier labs:
+
+1. `bool TryGetCost(string kind, double kg, out double cost)`. A `"letter"` costs 2 lei and a `"box"` costs 5 lei plus 3 lei per kg. It fails for any other kind, or for a weight of zero or less.
+2. `string? FirstWhere(List<string> words, Func<string, bool> test)` returns the first word that passes the test, or `null`. Call it with two different lambdas.
+3. An abstract class `Parcel` with a `Weight` and an abstract `Cost()`, and two classes `Letter` and `Box` with the prices above. Both override `ToString`. Put letters and boxes in a `List<Parcel>`, then print each one and the total cost, without casts.
 
 ## Further reading
 

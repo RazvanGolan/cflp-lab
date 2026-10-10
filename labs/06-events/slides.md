@@ -438,15 +438,15 @@ Without `override` on ToString you get warning CS0114 and the old version runs. 
 
 # Practice
 
-Write these in a new console project. Ask if you get stuck.
+Start with `dotnet new console -n Parcels`, and do not look at earlier labs.
 
-1. An abstract class `Parcel` with a `Weight` in kg and an abstract `Cost()`. A `Letter` costs 2 lei. A `Box` costs 5 lei plus 3 lei per kg. Both override `ToString`.
-2. A method `bool TryParseWeight(string text, out double kg)` that accepts text such as `"2.5kg"` and fails on anything else, or on a weight of zero or less.
-3. A method `double SumOf(List<Parcel> parcels, Func<Parcel, double> value)`, then use it to add up the cost and the weight of a list with letters and boxes.
+1. `bool TryGetCost(string kind, double kg, out double cost)`. A `"letter"` costs 2 lei and a `"box"` costs 5 lei plus 3 lei per kg. It fails for any other kind, or for a weight of zero or less.
+2. `string? FirstWhere(List<string> words, Func<string, bool> test)` returns the first word that passes the test, or `null`. Call it with two different lambdas.
+3. An abstract class `Parcel` with a `Weight` and an abstract `Cost()`, and two classes `Letter` and `Box` with the prices above. Both override `ToString`. Put letters and boxes in a `List<Parcel>`, then print each one and the total cost, without casts.
 
 <!--
 About 15 minutes. Walk around and check the lists from the previous three slides.
-Hint for 2: `text.EndsWith("kg")`, then `double.TryParse` on the rest. The lab machines may use a locale with a comma, so test "2.5" with CultureInfo.InvariantCulture if parsing fails.
+The order follows the test: an out method, a method that takes a Func, then the class hierarchy.
 -->
 
 ---
