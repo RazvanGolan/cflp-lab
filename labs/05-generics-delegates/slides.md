@@ -144,6 +144,80 @@ They are all in System.Collections.Generic, which a console project imports for 
 layout: two-cols
 ---
 
+# How a hash set works
+
+```cs
+HashSet<string> fruits = ["apple", "plum", "kiwi"];
+Console.WriteLine(fruits.Add("pear"));
+Console.WriteLine(fruits.Add("plum"));
+Console.WriteLine(fruits.Contains("kiwi"));
+Console.WriteLine(fruits.Count);
+```
+
+<div v-click>
+
+```text
+True
+False
+True
+4
+```
+
+</div>
+
+`Add` returns `false` when the item is already there. A set has no index, and you cannot count on its order.
+
+::right::
+
+<div class="pl-6 pt-22">
+
+```text
+"pear".GetHashCode() % 4  →  bucket 2
+
+bucket 0
+bucket 1   "apple"
+bucket 2   "plum"  "pear"
+bucket 3   "kiwi"
+```
+
+`GetHashCode` turns an item into a number, and the number picks a bucket. `Contains` computes the same number and looks in that bucket only, so it stays fast with a million items. `List<T>.Contains` checks every element.
+
+Items that land in the same bucket are compared with `Equals`.
+
+</div>
+
+<!--
+The numbers are made up. String hash codes change every time the program starts, so never save them.
+Two different items in one bucket are a collision. A good hash code spreads items evenly, so each bucket holds one or two.
+When the set fills up, it creates more buckets and moves every item to its new bucket. That is why Add is fast on average, with an occasional slower one.
+-->
+
+---
+
+# Other hash types
+
+| Type | Keeps |
+|---|---|
+| `HashSet<T>` | unique items |
+| `Dictionary<TKey, TValue>` | hashed keys, each with a value |
+| `ConcurrentDictionary<K, V>` | the same, safe for several threads |
+| `FrozenSet<T>`, `FrozenDictionary<K, V>` | built once, never changed, faster |
+
+`SortedSet<T>` and `SortedDictionary<TKey, TValue>` use no hashing. They keep the items sorted in a tree.
+
+Equal items must give the same hash code. `string` and `int` already do. Your own class compares references unless you override `Equals` and `GetHashCode` together.
+
+<!--
+`Hashtable` is the old version of Dictionary from before generics: keys and values are `object`. You may see it in old code; don't use it.
+Example: two `new Song("Imagine", "John Lennon", 183)` objects are two items in a HashSet<Song>, because Song does not override Equals and GetHashCode.
+Concurrent types are in System.Collections.Concurrent, the frozen ones in System.Collections.Frozen.
+If someone asks about SHA-256 or password hashing: those are hash functions too, built to be hard to reverse. GetHashCode is built to be fast, and is not safe for passwords.
+-->
+
+---
+layout: two-cols
+---
+
 # A generic class
 
 ```cs {1|3|6-13|all}

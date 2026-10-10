@@ -29,3 +29,10 @@ foreach (KeyValuePair<string, int> pair in counts)
 
 // A key that is not in the dictionary throws KeyNotFoundException.
 // Console.WriteLine(counts["bird"]);
+Console.WriteLine();
+
+HashSet<string> fruits = ["apple", "plum", "kiwi"];
+Console.WriteLine(fruits.Add("pear"));
+Console.WriteLine(fruits.Add("plum"));
+Console.WriteLine(fruits.Contains("kiwi"));
+Console.WriteLine(fruits.Count);
