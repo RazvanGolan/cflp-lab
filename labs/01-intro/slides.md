@@ -24,7 +24,7 @@ Each session has two parts.
 
 There are two tests during the semester, on the topics from the labs. The dates will be on CV UPT.
 
-Slides and code for every lab are published after the lab at
+Slides and code for every lab are at
 
 ```text
 https://razvangolan.github.io/cflp-lab/
