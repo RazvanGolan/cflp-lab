@@ -1,6 +1,6 @@
 # Lab 3: Parameter passing
 
-Slides: [lab](https://razvangolan.github.io/cflp-lab/03-parameters/slides/)
+Slides: [lab](https://razvangolan.github.io/cflp-lab/03-parameters/slides/) · [optional part](https://razvangolan.github.io/cflp-lab/03-parameters/deep-dive/) · [application code](https://github.com/RazvanGolan/study-rooms/tree/week-03)
 
 How arguments reach a method, `ref` and `out` parameters, the `TryParse` pattern, and `params`.
 
