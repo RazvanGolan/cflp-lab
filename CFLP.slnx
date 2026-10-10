@@ -17,6 +17,7 @@
   </Folder>
   <Folder Name="/labs/03-parameters/">
     <Project Path="labs/03-parameters/code/ByRef/ByRef.csproj" />
+    <Project Path="labs/03-parameters/code/Exceptions/Exceptions.csproj" />
     <Project Path="labs/03-parameters/code/Maximum/Maximum.csproj" />
     <Project Path="labs/03-parameters/code/OutParameters/OutParameters.csproj" />
   </Folder>

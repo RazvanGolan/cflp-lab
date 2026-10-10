@@ -69,7 +69,7 @@ CI (`.github/workflows/pages.yml`) builds the code with `-warnaserror`, checks t
   | 4 | `#be123c` | rose |
   | 5 | `#b45309` | amber |
   | 6 | `#15803d` | green |
-  | 7 | `#a21caf` | magenta |
+  | 8 | `#a21caf` | magenta |
   | 9 | `#0369a1` | sky |
   | 10 | `#c2410c` | orange |
   | 11 | `#4d7c0f` | olive |

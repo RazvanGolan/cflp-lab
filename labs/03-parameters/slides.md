@@ -333,7 +333,7 @@ bool valid = TryParseTime(text, out _, out _);
 
 A user typing a wrong time is normal, so the method returns `false` and the caller decides what to do. The `if` around the call makes it hard to forget that case.
 
-An exception is for something the caller could not reasonably expect, such as a file that disappears while you read it. We look at exceptions in lab 5.
+An exception is for something the caller could not reasonably expect, such as a file that disappears while you read it. We get to exceptions after `params`.
 
 ---
 layout: two-cols
@@ -384,8 +384,107 @@ int Max(params int[] values)
 </div>
 
 <!--
-Answer: `values` is an empty array, so `values[0]` throws IndexOutOfRangeException. Decide with the class: throw an ArgumentException with a clear message, or make the first value a normal parameter: `Max(int first, params int[] rest)`.
+Let them guess, then answer on the next slide: `values` is an empty array, so `values[0]` throws.
 `Console.WriteLine("{0} and {1}", a, b)` uses params too.
+-->
+
+---
+
+# When nothing catches an exception
+
+`Max()` passes an empty array, and `values[0]` fails:
+
+```text
+Unhandled exception. System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Program.<<Main>$>g__Max|0_0(Int32[] values) in .../Program.cs:line 6
+   at Program.<Main>$(String[] args) in .../Program.cs:line 2
+```
+
+An exception stops the method that is running, then the method that called it, and so on. If no code catches it, the program stops and prints what went wrong.
+
+The first line gives the type and the message. Under it is the call stack, newest call first. Look for the first line that points into your own file. Here it is `Max`, and the line number tells you where.
+
+<!--
+LIVE: in the Maximum project, delete the `if` at the start of `Max`, add `Console.WriteLine(Max());` and run. Put the check back on the next slide.
+-->
+
+---
+
+# `throw`
+
+```cs {3-6|all}
+int Max(params int[] values)
+{
+    if (values.Length == 0)
+    {
+        throw new ArgumentException("Max needs at least one value.");
+    }
+    // ...
+}
+```
+
+<div v-click>
+
+```text
+Unhandled exception. System.ArgumentException: Max needs at least one value.
+```
+
+</div>
+
+The program still stops, but the message now says what the caller did wrong. Check the arguments at the start of a method and throw before doing any work.
+
+`ArgumentException` means a bad argument. `InvalidOperationException` means the call does not make sense right now, like taking an item from an empty stack.
+
+<!--
+The other fix from the params slide: `Max(int first, params int[] rest)`. Then `Max()` does not compile at all, which is even better than an exception.
+-->
+
+---
+layout: two-cols
+---
+
+# `try` and `catch`
+
+```cs {1-5|6-9|11|all}
+try
+{
+    string text = File.ReadAllText("notes.txt");
+    Console.WriteLine(text);
+}
+catch (FileNotFoundException)
+{
+    Console.WriteLine("No notes yet.");
+}
+
+Console.WriteLine("Done");
+```
+
+<div v-click>
+
+```text
+No notes yet.
+Done
+```
+
+</div>
+
+::right::
+
+<div class="pl-6 pt-22">
+
+If a line inside `try` throws a `FileNotFoundException`, the rest of `try` is skipped and the `catch` block runs. After that the program continues normally.
+
+A missing file is something the program cannot check ahead of time, so catching is the right tool here.
+
+Catch only the exceptions you know how to handle. For text typed by a user, `TryParse` is still the better choice.
+
+</div>
+
+<!--
+LIVE: run the Exceptions project, then create notes.txt in the folder you run from and run again.
+`catch (FileNotFoundException ex)` gives access to `ex.Message` if you want to print it.
+If asked: `finally` runs whether or not an exception happened, used for cleanup. `catch (Exception)` catches everything and hides real bugs, so avoid it.
+Not required by the assignments or the tests. Keep this part short.
 -->
 
 ---
@@ -401,6 +500,8 @@ Answer: `values` is an empty array, so `values[0]` throws IndexOutOfRangeExcepti
 Without `ref`, a method can still change the object that a class variable points to. It cannot make the variable point somewhere else.
 
 `params` is about how many arguments a method takes. They arrive as an array.
+
+Return `bool` when bad input is normal. Throw an exception when a method is called in a way it cannot handle, and catch it only where you can do something useful.
 
 <!--
 If someone asks: `in` passes a variable by reference but read-only. It is mostly used to avoid copying large structs.
