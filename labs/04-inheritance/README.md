@@ -1,6 +1,6 @@
 # Lab 4: Inheritance
 
-Slides: [lab](https://razvangolan.github.io/cflp-lab/04-inheritance/slides/)
+Slides: [lab](https://razvangolan.github.io/cflp-lab/04-inheritance/slides/) · [optional part](https://razvangolan.github.io/cflp-lab/04-inheritance/deep-dive/) · [application code](https://github.com/RazvanGolan/study-rooms/tree/week-04)
 
 Base classes, abstract members, overriding, casts and pattern matching, and a list of the base type used without casting.
 
