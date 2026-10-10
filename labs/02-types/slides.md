@@ -570,7 +570,7 @@ public int Estimate
 }
 ```
 
-This is the long form of a property, with a check in the setter. `throw` stops the program with an error, unless someone catches it. Exceptions come in lab 5.
+This is the long form of a property, with a check in the setter. `throw` stops the program with an error, unless someone catches it. Exceptions come in lab 3.
 
 <!--
 Since C# 14 you can write `field` inside the accessors instead of declaring `estimate` yourself. Mention it only if someone asks.
@@ -799,7 +799,7 @@ public struct Square(double side) : IShape
 <!--
 `Circle(double r)` is a primary constructor: the parameter is available in the whole class. It is short for a constructor that stores `r` in a field.
 Interface names start with `I` by convention.
-These `=>` members are expression-bodied members, not lambdas. Lambdas also use `=>` and come in lab 6. `Century` in lab 1 was written the same way.
+These `=>` members are expression-bodied members, not lambdas. Lambdas also use `=>` and come in lab 5. `Century` in lab 1 was written the same way.
 -->
 
 ---

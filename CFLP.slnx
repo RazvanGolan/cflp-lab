@@ -24,4 +24,9 @@
   <Folder Name="/labs/04-inheritance/">
     <Project Path="labs/04-inheritance/code/Streaming/Streaming.csproj" />
   </Folder>
+  <Folder Name="/labs/05-generics-delegates/">
+    <Project Path="labs/05-generics-delegates/code/Collections/Collections.csproj" />
+    <Project Path="labs/05-generics-delegates/code/Generics/Generics.csproj" />
+    <Project Path="labs/05-generics-delegates/code/Playlist/Playlist.csproj" />
+  </Folder>
 </Solution>
