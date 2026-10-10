@@ -70,6 +70,11 @@ for (const lab of labs) {
     const colour = entry.decks.find((d) => d.primary)?.primary ?? DEFAULT_ACCENT
     writeFileSync(join(dist, lab, 'icon.svg'), iconSvg(String(entry.week), colour))
     entries.push(entry)
+  } else {
+    // A week without decks, such as a test, still gets a row. Its title is the README's first heading.
+    const readme = join(labsDir, lab, 'README.md')
+    const title = existsSync(readme) ? readFileSync(readme, 'utf8').match(/^#\s+(.+)$/m)?.[1] : undefined
+    if (title) entries.push({ ...entry, title })
   }
 }
 
@@ -88,10 +93,19 @@ function readHeadmatter(file) {
   return { title, primary }
 }
 
-function renderLab({ lab, week, decks }) {
+function renderLab({ lab, week, decks, title: readmeTitle }) {
   const main = decks.find((d) => d.kind === 'lab')
   const deepDive = decks.find((d) => d.kind === 'deep-dive')
-  const title = escapeHtml(main?.title.replace(/^Lab \d+\s*[:—-]\s*/, '') ?? lab)
+  const title = escapeHtml((main?.title ?? readmeTitle ?? lab).replace(/^Lab \d+\s*[:—-]\s*/, ''))
+
+  if (decks.length === 0) {
+    return `      <li class="no-decks">
+        <span class="week">Week ${week}</span>
+        <span class="title">${title}</span>
+        <span class="links"><span class="note">No slides</span></span>
+      </li>`
+  }
+
   const links = [
     main && `<a href="${lab}/${main.slug}/">Slides</a>`,
     deepDive && `<a class="optional" href="${lab}/${deepDive.slug}/" title="${escapeHtml(deepDive.title)}">Optional part</a>`,

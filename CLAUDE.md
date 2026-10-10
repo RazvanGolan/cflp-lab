@@ -12,6 +12,8 @@ labs/NN-topic/
   deep-dive.md     Slidev deck for the optional part (not every week has one)
   README.md        what the lab covers, how to run the code, further reading
   code/<Project>/  one console project per concept
+labs/NN-name/README.md   a week without slides (a test) has only a README; its first heading
+                         becomes the landing page row, with no buttons
 theme/             shared Slidev theme, tuned for a classroom projector
 site/index.html    landing page template; the build fills in one row per lab
 scripts/build-site.mjs   builds every deck into dist/ and writes the landing page
