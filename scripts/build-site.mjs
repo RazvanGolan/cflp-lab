@@ -102,7 +102,7 @@ function renderLab({ lab, week, decks, title: readmeTitle }) {
     return `      <li class="no-decks">
         <span class="week">Week ${week}</span>
         <span class="title">${title}</span>
-        <span class="links"><span class="note">No slides</span></span>
+        <span class="links"></span>
       </li>`
   }
 
