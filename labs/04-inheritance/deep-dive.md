@@ -256,7 +256,7 @@ public record ErrorResponse(string Title, List<string> Problems);
 }
 ```
 
-The interface in week 7 can show the title, then each problem on its own line.
+The interface in week 8 can show the title, then each problem on its own line.
 
 ---
 

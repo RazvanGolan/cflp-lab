@@ -112,7 +112,7 @@ Sketch two or three screens on paper. For each one, write:
 
 Every action on a screen becomes a request to the API. "Send an adoption request" turns into one request that creates an `AdoptionRequest`.
 
-The screens get built in week 7. Today they only help us check that the entities have everything the screens need.
+The screens get built in week 8. Today they only help us check that the entities have everything the screens need.
 
 ---
 
