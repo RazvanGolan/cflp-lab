@@ -1,6 +1,6 @@
 # Lab 6: Events
 
-Slides: [lab](https://razvangolan.github.io/cflp-lab/06-events/slides/)
+Slides: [lab](https://razvangolan.github.io/cflp-lab/06-events/slides/) · [optional part](https://razvangolan.github.io/cflp-lab/06-events/deep-dive/) · [application code](https://github.com/RazvanGolan/study-rooms/tree/week-06)
 
 Delegates that hold several methods, events, subscribing and unsubscribing, then a recap for Test 1.
 
