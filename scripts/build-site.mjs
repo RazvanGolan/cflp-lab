@@ -96,7 +96,8 @@ function readHeadmatter(file) {
 function renderLab({ lab, week, decks, title: readmeTitle }) {
   const main = decks.find((d) => d.kind === 'lab')
   const deepDive = decks.find((d) => d.kind === 'deep-dive')
-  const title = escapeHtml((main?.title ?? readmeTitle ?? lab).replace(/^Lab \d+\s*[:—-]\s*/, ''))
+  // A week with only the optional part, such as week 8, takes its title from that deck.
+  const title = escapeHtml((main?.title ?? deepDive?.title ?? readmeTitle ?? lab).replace(/^(Lab|Optional) \d+\s*[:—-]\s*/, ''))
 
   if (decks.length === 0) {
     return `      <li class="no-decks">
