@@ -1,6 +1,6 @@
 # Lab 5: Generics and delegates
 
-Slides: [lab](https://razvangolan.github.io/cflp-lab/05-generics-delegates/slides/)
+Slides: [lab](https://razvangolan.github.io/cflp-lab/05-generics-delegates/slides/) · [optional part](https://razvangolan.github.io/cflp-lab/05-generics-delegates/deep-dive/) · [application code](https://github.com/RazvanGolan/study-rooms/tree/week-05)
 
 Generic collections, a generic class and a generic method of our own, then delegates, `Func` and `Action`, and lambdas.
 
