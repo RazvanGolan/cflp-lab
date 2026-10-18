@@ -38,4 +38,9 @@
     <Project Path="labs/09-async/code/Kitchen/Kitchen.csproj" />
     <Project Path="labs/09-async/code/Rhythm/Rhythm.csproj" />
   </Folder>
+  <Folder Name="/labs/10-linq/">
+    <Project Path="labs/10-linq/code/Charts/Charts.csproj" />
+    <Project Path="labs/10-linq/code/Extensions/Extensions.csproj" />
+    <Project Path="labs/10-linq/code/Iterators/Iterators.csproj" />
+  </Folder>
 </Solution>
