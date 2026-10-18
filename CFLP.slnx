@@ -33,4 +33,9 @@
     <Project Path="labs/06-events/code/Multicast/Multicast.csproj" />
     <Project Path="labs/06-events/code/Music/Music.csproj" />
   </Folder>
+  <Folder Name="/labs/09-async/">
+    <Project Path="labs/09-async/code/Download/Download.csproj" />
+    <Project Path="labs/09-async/code/Kitchen/Kitchen.csproj" />
+    <Project Path="labs/09-async/code/Rhythm/Rhythm.csproj" />
+  </Folder>
 </Solution>
