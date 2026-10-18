@@ -73,8 +73,11 @@ for (const lab of labs) {
   } else {
     // A week without decks, such as a test, still gets a row. Its title is the README's first heading.
     const readme = join(labsDir, lab, 'README.md')
-    const title = existsSync(readme) ? readFileSync(readme, 'utf8').match(/^#\s+(.+)$/m)?.[1] : undefined
-    if (title) entries.push({ ...entry, title })
+    // An optional "<!-- accent: #rrggbb -->" comment gives the row a colour; GitHub does not show it.
+    const text = existsSync(readme) ? readFileSync(readme, 'utf8') : ''
+    const title = text.match(/^#\s+(.+)$/m)?.[1]
+    const accent = text.match(/<!--\s*accent:\s*(#[0-9a-fA-F]{3,8})\s*-->/)?.[1]
+    if (title) entries.push({ ...entry, title, accent })
   }
 }
 
@@ -93,14 +96,15 @@ function readHeadmatter(file) {
   return { title, primary }
 }
 
-function renderLab({ lab, week, decks, title: readmeTitle }) {
+function renderLab({ lab, week, decks, title: readmeTitle, accent: readmeAccent }) {
   const main = decks.find((d) => d.kind === 'lab')
   const deepDive = decks.find((d) => d.kind === 'deep-dive')
   // A week with only the optional part, such as week 8, takes its title from that deck.
   const title = escapeHtml((main?.title ?? deepDive?.title ?? readmeTitle ?? lab).replace(/^(Lab|Optional) \d+\s*[:—-]\s*/, ''))
 
   if (decks.length === 0) {
-    return `      <li class="no-decks">
+    const attributes = readmeAccent ? ` style="--lab: ${readmeAccent}"` : ' class="no-decks"'
+    return `      <li${attributes}>
         <span class="week">Week ${week}</span>
         <span class="title">${title}</span>
         <span class="links"></span>

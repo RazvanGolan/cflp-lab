@@ -74,8 +74,10 @@ CI (`.github/workflows/pages.yml`) builds the code with `-warnaserror`, checks t
   | 8 | `#a21caf` | magenta |
   | 9 | `#0369a1` | sky |
   | 10 | `#4d7c0f` | olive |
-  | 11 | `#b91c1c` | crimson |
-  | 12 | `#334155` | slate |
+  | 11 | `#334155` | slate |
+  | 13 | `#4338ca` | indigo |
+
+  Test weeks (7, 12 and 14) have no colour. Week 13 has no decks, so its README sets the colour of its row with a first line `<!-- accent: #4338ca -->`, which GitHub does not show.
 - The build script also draws each lab's tab icon (the lab number on its accent colour) and the site icon ("C#"), so a new lab needs no icon work.
 - Slides and the landing page follow the viewer's light or dark setting. Colours in the theme are CSS variables with a dark variant, so do not hard-code colours on slides.
 - Demo code has no `#region` markers. A slide that shows a whole file imports it, so that code always compiles:
